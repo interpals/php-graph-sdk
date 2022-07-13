@@ -162,7 +162,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }
@@ -172,7 +172,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      *
      * @return ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->items);
     }
@@ -180,54 +180,54 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Determine if an item exists at an offset.
      *
-     * @param mixed $key
+     * @param mixed $offset
      *
      * @return bool
      */
-    public function offsetExists($key)
+    public function offsetExists(mixed $offset): bool
     {
-        return array_key_exists($key, $this->items);
+        return array_key_exists($offset, $this->items);
     }
 
     /**
      * Get an item at a given offset.
      *
-     * @param mixed $key
+     * @param mixed $offset
      *
      * @return mixed
      */
-    public function offsetGet($key)
+    public function offsetGet(mixed $offset): mixed
     {
-        return $this->items[$key];
+        return $this->items[$offset];
     }
 
     /**
      * Set the item at a given offset.
      *
-     * @param mixed $key
+     * @param mixed $offset
      * @param mixed $value
      *
      * @return void
      */
-    public function offsetSet($key, $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (is_null($key)) {
+        if (is_null($offset)) {
             $this->items[] = $value;
         } else {
-            $this->items[$key] = $value;
+            $this->items[$offset] = $value;
         }
     }
 
     /**
      * Unset the item at a given offset.
      *
-     * @param string $key
+     * @mixed mixed $offset
      *
      * @return void
      */
-    public function offsetUnset($key)
+    public function offsetUnset(mixed $offset): void
     {
-        unset($this->items[$key]);
+        unset($this->items[$offset]);
     }
 
     /**
@@ -235,7 +235,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->asJson();
     }
